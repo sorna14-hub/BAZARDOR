@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: false;
+  themes: bazardor;
 }
 
 /* Bazardor theme — colours taken from the design file's tokens */
