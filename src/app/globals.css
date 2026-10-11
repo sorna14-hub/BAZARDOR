@@ -1,76 +1,175 @@
-@import "tailwindcss";
-@plugin "daisyui" {
-  themes: bazardor;
-}
+# 🛒 বাজার দর (BazarDor)
 
-/* Bazardor theme — colours taken from the design file's tokens */
-@plugin "daisyui/theme" {
-  name: "bazardor";
-  default: true;
-  prefersdark: false;
-  color-scheme: light;
+### প্রয়োজনীয় পণ্যের দাম এক নজরে।
 
-  --color-base-100: #fafcfa;
-  --color-base-200: #f0f5f0;
-  --color-base-300: #e1e8e1;
-  --color-base-content: #1d271f;
+BazarDor is a Bangla-first market price tracker designed to help people across Bangladesh check the prices of everyday essentials. Explore daily price updates, discover which products have become more or less expensive, and compare prices across 12 bazaars in 6 divisions.
 
-  --color-primary: #05893e;
-  --color-primary-content: #f3fbf4;
-  --color-secondary: #047f39;
-  --color-secondary-content: #f3fbf4;
-  --color-accent: #f59e0b;
-  --color-accent-content: #1d271f;
-  --color-neutral: #1d271f;
-  --color-neutral-content: #fafcfa;
+🔗 **Live Demo:** https://bazardor-sorna.vercel.app/
 
-  --color-info: #4285f4;
-  --color-info-content: #ffffff;
-  --color-success: #1a9951;
-  --color-success-content: #f3fbf4;
-  --color-warning: #f59e0b;
-  --color-warning-content: #1d271f;
-  --color-error: #d03739;
-  --color-error-content: #fff6f5;
+---
 
-  --radius-selector: 0.75rem;
-  --radius-field: 0.5rem;
-  --radius-box: 1rem;
-  --size-selector: 0.25rem;
-  --size-field: 0.25rem;
-  --border: 1px;
-  --depth: 0;
-  --noise: 0;
-}
+## ✨ Key Features
 
-@theme inline {
-  --font-sans: var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
-  /* extra shades used in the design */
-  --color-primary-hover: #037333;
-  --color-error-hover: #b02d2f;
-}
+1. **📈 Live Price Ticker** — An infinitely scrolling ticker displays product prices and daily price changes. It pauses on hover and respects reduced-motion preferences.
 
-html {
-  scroll-behavior: smooth;
-}
+2. **📊 Today's Price Movers** — Dedicated sections highlight the top 6 products with rising prices (আজ দাম বেড়েছে ▲) and falling prices (আজ দাম কমেছে ▼).
 
-body {
-  font-family: var(--font-sans);
-}
+3. **🗂️ Smart Category Browsing** — Browse 8 product categories and sort products by default order, lowest price, or highest price. Bengali numerals are correctly converted for numerical sorting.
 
-/* ---------- Price ticker (marquee) ---------- */
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.ticker-track {
-  animation: ticker-scroll 100s linear infinite;
-}
-.ticker:hover .ticker-track,
-.ticker:focus-within .ticker-track {
-  animation-play-state: paused;
-}
-@media (prefers-reduced-motion: reduce) {
-  .ticker { overflow-x: auto; }
-  .ticker-track { animation: none; }
-}
+4. **🔍 Detailed Product Pages** — Authenticated users can explore minimum, maximum, and average prices, identify the cheapest and most expensive markets, compare historical prices, and view market-wise price tables.
+
+5. **🔐 Secure Authentication** — Better Auth supports email/password registration and login, Google and GitHub authentication, protected routes, redirect-back behavior, and toast notifications.
+
+6. **👤 Profile Management** — View account information, access profile settings, sign out, and update your name through a dedicated profile page.
+
+7. **🇧🇩 Bangla-First Experience** — A Bengali interface featuring the Hind Siliguri font, Bengali numerals for prices and dates, and localized date formatting.
+
+8. **📱 Responsive Design** — Optimized layouts for mobile, tablet, and desktop, with skeleton loaders, empty states, and a custom 404 page.
+
+---
+
+## 🛠️ Technologies Used
+
+| Purpose           | Technology              |
+| ----------------- | ----------------------- |
+| Framework         | Next.js 16 (App Router) |
+| Language          | TypeScript              |
+| UI Library        | React 19                |
+| Styling           | Tailwind CSS v4         |
+| Component Library | DaisyUI 5               |
+| Authentication    | Better Auth             |
+| Database          | MongoDB                 |
+| Notifications     | React Hot Toast         |
+| Typography        | Hind Siliguri           |
+| Data Source       | BazarDor REST API       |
+| Deployment        | Vercel                  |
+
+---
+
+## 📄 Pages & Routes
+
+| Route              | Description                                                             | Access         |
+| ------------------ | ----------------------------------------------------------------------- | -------------- |
+| `/`                | Homepage featuring price movers, the price ticker, and product listings | Public         |
+| `/category/[slug]` | Category-specific products with sorting and loading states              | Public         |
+| `/product/[slug]`  | Product price analysis and market-wise comparisons                      | Login Required |
+| `/signin`          | Sign in with email/password or a supported OAuth provider               | Public         |
+| `/signup`          | Create an account using email/password                                  | Public         |
+| `/profile`         | View account information and sign out                                   | Login Required |
+| `/profile/update`  | Update profile name                                                     | Login Required |
+| Any unknown route  | Custom 404 page with a link to the homepage                             | Public         |
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run BazarDor locally.
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+* Node.js
+* npm
+* MongoDB database
+* Google and GitHub OAuth credentials (if using social login)
+
+### Installation
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/sorna14-hub/BAZARDOR
+```
+
+**2. Navigate to the project directory**
+
+```bash
+cd Assignment_07
+```
+
+**3. Install dependencies**
+
+```bash
+npm install
+```
+
+**4. Configure environment variables**
+
+Create a `.env` file in the project root and add the required variables listed below.
+
+**5. Start the development server**
+
+```bash
+npm run dev
+```
+
+**6. Open the application**
+
+Visit http://localhost:3000 in your browser.
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the root directory.
+
+| Variable                  | Description                    |
+| ------------------------- | ------------------------------ |
+| `BETTER_AUTH_SECRET`      | Secret key used by Better Auth |
+| `BETTER_AUTH_URL`         | Base URL of the application    |
+| `BETTER_AUTH_MONGODB_URL` | MongoDB connection string      |
+| `GOOGLE_CLIENT_ID`        | Google OAuth client ID         |
+| `GOOGLE_CLIENT_SECRET`    | Google OAuth client secret     |
+| `GITHUB_CLIENT_ID`        | GitHub OAuth client ID         |
+| `GITHUB_CLIENT_SECRET`    | GitHub OAuth client secret     |
+
+Generate a secret for Better Auth using:
+
+```bash
+npx @better-auth/cli secret
+```
+
+For local development, set `BETTER_AUTH_URL` to:
+
+```text
+http://localhost:3000
+```
+
+For production, use your deployed application URL.
+
+### OAuth Callback URLs
+
+Configure the following callback URLs in your OAuth provider settings:
+
+**Google**
+
+```text
+http://localhost:3000/api/auth/callback/google
+```
+
+**GitHub**
+
+```text
+http://localhost:3000/api/auth/callback/github
+```
+
+For production, replace `http://localhost:3000` with your deployed application URL.
+
+> **Security Note:** Never commit your `.env` file, database credentials, OAuth secrets, or authentication secret to GitHub. Keep sensitive environment variables private.
+
+---
+
+## 📁 Project Structure
+
+```text
+BAZARDOR/
+├── public/                     # Static assets
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       └── [...all]/   # Better Auth API routes
+│   │   ├── category/
+│   │   │   └── [slug]/         #
+```
